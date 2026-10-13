@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: task-management
+  webflux:
+    problemdetails:
+      enabled: true
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+      fail-on-numbers-for-enums: true
+  codec:
+    max-in-memory-size: 64KB
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never

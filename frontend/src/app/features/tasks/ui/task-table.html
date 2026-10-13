@@ -1,0 +1,46 @@
+<div class="table-scroll">
+  <table>
+    <caption class="sr-only">
+      Tasks matching the selected status
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Status</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Assignee</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (task of tasks(); track task.id) {
+        <tr>
+          <td class="task-title">
+            <strong>{{ task.title }}</strong>
+            @if (task.description) {
+              <p>{{ task.description }}</p>
+            }
+          </td>
+          <td>
+            <span
+              class="badge"
+              [class.done]="task.status === 'DONE'"
+              [class.progress]="task.status === 'IN_PROGRESS'"
+              >{{ statusLabels[task.status] }}</span
+            >
+          </td>
+          <td>
+            <span class="priority" [class.high]="task.priority === 'HIGH'">{{
+              task.priority
+            }}</span>
+          </td>
+          <td>{{ task.assignee || 'Unassigned' }}</td>
+          <td class="date">
+            {{ task.createdAt | date: 'mediumDate'
+            }}<small>{{ task.createdAt | date: 'shortTime' }}</small>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

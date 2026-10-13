@@ -1,0 +1,61 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  aria-labelledby="create-heading"
+  [attr.aria-busy]="saving()"
+>
+  <h2 id="create-heading">Create a task</h2>
+  <p class="muted">Give your next piece of work a clear starting point.</p>
+  <fieldset [disabled]="saving()">
+    <label for="title">Title <span class="required">*</span></label>
+    <input
+      id="title"
+      formControlName="title"
+      maxlength="100"
+      required
+      aria-describedby="title-help"
+      [attr.aria-invalid]="form.controls.title.touched && form.controls.title.invalid"
+      placeholder="What needs to get done?"
+    />
+    <small
+      id="title-help"
+      [class.validation]="form.controls.title.touched && form.controls.title.invalid"
+    >
+      @if (form.controls.title.touched && form.controls.title.invalid) {
+        Enter a title with 1-100 characters; spaces alone are not valid.
+      } @else {
+        Maximum 100 characters.
+      }
+    </small>
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      maxlength="500"
+      rows="3"
+      aria-describedby="description-help"
+      placeholder="Add useful context (optional)"
+    ></textarea>
+    <small id="description-help">Maximum 500 characters.</small>
+    <div class="form-row">
+      <div>
+        <label for="priority">Priority <span class="required">*</span></label
+        ><select id="priority" formControlName="priority">
+          @for (priority of priorities; track priority) {
+            <option [value]="priority">{{ priority }}</option>
+          }
+        </select>
+      </div>
+      <div>
+        <label for="assignee">Assignee</label
+        ><input id="assignee" formControlName="assignee" placeholder="Name (optional)" />
+      </div>
+    </div>
+  </fieldset>
+  @if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+  }
+  <button class="primary" type="submit" [disabled]="saving()">
+    {{ saving() ? 'Creating…' : 'Create task' }}
+  </button>
+</form>

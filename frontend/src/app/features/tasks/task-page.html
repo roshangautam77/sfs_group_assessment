@@ -1,0 +1,73 @@
+<header class="app-header">
+  <a href="/tasks" class="brand"><span class="brand-mark" aria-hidden="true">✓</span> Taskboard</a
+  ><span class="workspace">Team workspace</span>
+</header>
+<main>
+  <div class="page-heading">
+    <p class="eyebrow">WORK MANAGEMENT</p>
+    <h1>A clear view of your work.</h1>
+    <p class="muted">Create, organize, and keep your team’s tasks moving.</p>
+  </div>
+  <div class="workspace-grid">
+    <section
+      class="card task-list"
+      aria-labelledby="tasks-heading"
+      [attr.aria-busy]="store.list().loading"
+    >
+      <div class="list-toolbar">
+        <div>
+          <h2 id="tasks-heading">Tasks</h2>
+          <p class="muted">{{ store.list().tasks.length }} shown</p>
+        </div>
+        <div class="filter-controls">
+          <label for="status-filter">Status</label
+          ><select id="status-filter" [value]="store.filter()" (change)="changeFilter($event)">
+            <option value="">All statuses</option>
+            @for (status of statuses; track status) {
+              <option [value]="status">{{ statusLabels[status] }}</option>
+            }</select
+          ><button type="button" (click)="store.refresh()" [disabled]="store.list().loading">
+            Refresh
+          </button>
+        </div>
+      </div>
+      @if (store.list().loading) {
+        <div class="empty-state" role="status">
+          <span class="spinner" aria-hidden="true"></span>
+          <p>Loading tasks…</p>
+        </div>
+      } @else if (store.list().error) {
+        <div class="empty-state">
+          <p class="error" role="alert">{{ store.list().error }}</p>
+          <button type="button" (click)="store.refresh()">Try again</button>
+        </div>
+      } @else if (store.list().tasks.length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon" aria-hidden="true">☷</div>
+          <h3>No tasks here yet</h3>
+          <p class="muted">
+            {{
+              store.filter()
+                ? 'No tasks match this status. Try another filter.'
+                : 'Create your first task to get started.'
+            }}
+          </p>
+        </div>
+      } @else {
+        <app-task-table [tasks]="store.list().tasks" />
+      }
+    </section>
+    <aside class="card create-panel">
+      <app-task-create-form
+        [saving]="store.saving()"
+        [error]="store.createError()"
+        (submitted)="store.create($event)"
+      />
+      @if (store.createSuccess() > 0 && !store.createError() && !store.saving()) {
+        <p class="success" role="status">
+          Task created successfully. The list uses your current status filter.
+        </p>
+      }
+    </aside>
+  </div>
+</main>

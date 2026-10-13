@@ -1,0 +1,20 @@
+9yVvr1od8e6EQS7Edv3wSI6NOJL4NFlhp+Oc7bK91AQ=
+src/main/java/com/example/taskmanagement/TaskManagementApplication.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/config/TimeConfiguration.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/shared/api/ApiErrorHandler.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/api/CreateTaskRequest.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/api/TaskController.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/api/TaskResponse.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/api/UpdateTaskRequest.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/application/TaskNotFoundException.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/application/TaskService.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/domain/Task.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/domain/TaskChanges.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/domain/TaskPriority.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/domain/TaskRepository.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/domain/TaskStatus.java 2026-10-13T05:35:22Z
+src/main/java/com/example/taskmanagement/task/infrastructure/InMemoryTaskRepository.java 2026-10-13T05:35:22Z
+src/test/java/com/example/taskmanagement/shared/api/ApiErrorHandlerTest.java 2026-10-13T05:35:20Z
+src/test/java/com/example/taskmanagement/task/api/TaskApiIntegrationTest.java 2026-10-13T05:35:20Z
+src/test/java/com/example/taskmanagement/task/application/TaskServiceTest.java 2026-10-13T05:35:22Z
+src/test/java/com/example/taskmanagement/task/infrastructure/InMemoryTaskRepositoryTest.java 2026-10-13T05:35:22Z
